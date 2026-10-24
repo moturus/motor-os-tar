@@ -1,0 +1,15 @@
+[package]
+name = "motor-os-tar"
+version = "0.1.0"
+edition = "2024"
+description = "tar and zstd commands for Motor OS and Linux"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/moturus/tar"
+
+[dependencies]
+# Exact: compressed output is part of the reproducibility contract, and the
+# reference archives in tests/data must be regenerated with any upgrade.
+structured-zstd = { version = "=0.2.5", default-features = false, features = ["std", "hash"] }
+
+[target.'cfg(target_os = "motor")'.dependencies]
+moto-rt = "0.17.9"
